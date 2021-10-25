@@ -1,6 +1,12 @@
 import Head from "next/head";
 import "../styles/homepage.css";
 import "../styles/utilities.css";
+import "../styles/checkout.css";
+import "../styles/overview.css";
+import "../styles/sidebar.css";
+import "../styles/transactions.css";
+import "../styles/transactions-detail.css";
+import "../styles/navbar-login.css";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
