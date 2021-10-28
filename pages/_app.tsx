@@ -8,6 +8,10 @@ import "../styles/transactions.css";
 import "../styles/transactions-detail.css";
 import "../styles/edit-profile.css";
 import "../styles/navbar-login.css";
+import "../styles/sign-in.css";
+import "../styles/sign-up.css";
+import "../styles/sign-up-photo.css";
+import "../styles/sign-up-success.css";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
