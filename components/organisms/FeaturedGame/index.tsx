@@ -1,6 +1,22 @@
+import { useCallback, useEffect, useState } from "react";
+import { GameItemTypes } from "../../../services/data-types";
+import { getFeaturedGame } from "../../../services/player";
 import GameItem from "../../molecules/GameItem";
 
 function FeaturedGame() {
+  const [gameList, setGameList] = useState([]);
+
+  const getFeaturedGameList = useCallback(async () => {
+    const data = await getFeaturedGame();
+    setGameList(data);
+  }, [getFeaturedGame]);
+
+  useEffect(() => {
+    getFeaturedGameList();
+  }, []);
+
+  const API_IMAGE = process.env.NEXT_PUBLIC_IMAGE;
+
   return (
     <section className="featured-game pt-50 pb-50">
       <div className="container-fluid">
@@ -9,12 +25,21 @@ function FeaturedGame() {
           <br />
           Games This Year
         </h2>
-        <div className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4" data-aos="fade-up">
-          <GameItem thumbnail="/img/Thumbnail-1.png" title="Super Mechs" category="Mobile" />
-          <GameItem thumbnail="/img/Thumbnail-2.png" title="Call of Duty: Modern" category="Mobile" />
-          <GameItem thumbnail="/img/Thumbnail-3.png" title="Mobile Legends" category="Mobile" />
-          <GameItem thumbnail="/img/Thumbnail-4.png" title="Clash of Clans" category="Mobile" />
-          <GameItem thumbnail="/img/Thumbnail-5.png" title="Valorant" category="Dekstop" />
+        <div
+          className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
+          data-aos="fade-up"
+        >
+          {gameList.map((item: GameItemTypes) => {
+            return (
+              <GameItem
+                key={item._id}
+                id={item._id}
+                thumbnail={`${API_IMAGE}/${item.thumbnail}`}
+                title={item.name}
+                category={item.category.name}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
