@@ -12,3 +12,12 @@ export const setSignUp = async (data: FormData) => {
     data,
   });
 };
+
+export const setLogin = async (data: LoginTypes) => {
+  const url = `${ROOT_API}/${API_VERSION}/auth/signin`;
+  return callAPI({
+    url,
+    method: "POST",
+    data,
+  });
+};
