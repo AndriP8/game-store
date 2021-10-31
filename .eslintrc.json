@@ -18,14 +18,23 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/prop-types": "off",
     "no-underscore-dangle": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/no-redundant-roles": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "no-console": "off",
+    "arrow-body-style": "off",
+    "implicit-arrow-linebreak": ["error", "beside"],
     "import/extensions": [
       "error",
       "ignorePackages",
