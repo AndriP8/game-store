@@ -48,7 +48,6 @@ function SignUpPhoto() {
     data.append("status", "Y");
     data.append("favorite", favorite);
     const response = await setSignUp(data);
-    console.log(response);
 
     if (response.error) {
       toast.error(response.message);
