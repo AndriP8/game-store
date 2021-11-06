@@ -24,7 +24,7 @@ function SignUpSucces() {
           </p>
         </div>
         <div className="button-group d-flex flex-column mx-auto">
-          <Link href="/">
+          <Link href="/sign-in">
             <button
               className="btn btn-top-up fw-medium text-lg text-white rounded-pill"
               role="button"
