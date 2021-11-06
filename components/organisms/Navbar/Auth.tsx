@@ -20,8 +20,7 @@ function Auth() {
       const jwtToken = atob(token);
       const payload: JWTPayloadTypes = jwtDecode(jwtToken);
       const userFromPayload: UserTypes = payload.player;
-      const IMG = process.env.NEXT_PUBLIC_IMAGE;
-      user.avatar = `${IMG}/${userFromPayload.avatar}`;
+      user.avatar = userFromPayload.avatar;
       setIsLogin(true);
       setUser(user);
     }
