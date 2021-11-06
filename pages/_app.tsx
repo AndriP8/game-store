@@ -16,8 +16,10 @@ import "../styles/sign-up-photo-success.css";
 import "../styles/sign-up-success.css";
 import "../styles/complete-checkout.css";
 import "../styles/404-not-found.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import type { AppProps } from "next/app";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -52,6 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
+      <ToastContainer />
     </>
   );
 }
