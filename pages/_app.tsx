@@ -13,6 +13,7 @@ import "../styles/sign-in.css";
 import "../styles/sign-up.css";
 import "../styles/sign-up-photo.css";
 import "../styles/sign-up-success.css";
+import "../styles/complete-checkout.css";
 import "../styles/404-not-found.css";
 
 import type { AppProps } from "next/app";
@@ -30,7 +31,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
 
         {/* AOS Animation  */}
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+        <link
+          href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+          rel="stylesheet"
+        />
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" />
         {/*  Google Font */}
         <link rel="preconnect" href="https://fonts.gstatic.com" />
