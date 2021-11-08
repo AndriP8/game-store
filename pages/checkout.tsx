@@ -6,13 +6,15 @@ import CheckoutConfirmation from "../components/organisms/CheckoutConfirmation";
 import CheckoutDetail from "../components/organisms/CheckoutDetail";
 import CheckoutItem from "../components/organisms/CheckoutItem";
 
-interface CheckoutProps {
-  user: UserTypes;
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string;
+    };
+  };
 }
 
-function Checkout(props: CheckoutProps) {
-  const { user } = props;
-
+function Checkout() {
   return (
     <section className="checkout mx-auto pt-md-100 pb-md-145 pt-30 pb-30">
       <div className="container-fluid">
@@ -40,7 +42,7 @@ function Checkout(props: CheckoutProps) {
 
 export default Checkout;
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req }: GetServerSideProps) {
   const { token } = req.cookies;
 
   if (!token) {
@@ -55,8 +57,6 @@ export async function getServerSideProps({ req }) {
   const jwtToken = Buffer.from(token, "base64").toString("ascii");
   const payload: JWTPayloadTypes = jwtDecode(jwtToken);
   const userFromPayload: UserTypes = payload.player;
-  const IMG = process.env.NEXT_PUBLIC_IMAGE;
-  userFromPayload.avatar = `${IMG}/${userFromPayload.avatar}`;
 
   return {
     props: {
