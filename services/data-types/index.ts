@@ -39,7 +39,7 @@ export interface LoginTypes {
 }
 
 export interface UserTypes {
-  id: string;
+  _id: string;
   name: string;
   username: string;
   email: string;
@@ -57,4 +57,29 @@ export interface CheckoutTypes {
   bank: string;
   name: string;
   accountUser: string;
+}
+
+export interface HistoryVoucherTopupTypes {
+  gameName: string;
+  category: string;
+  coinName: string;
+  coinQuantity: string;
+  price: number;
+  thumbnail: string;
+}
+
+export interface HistoryTransactionTypes {
+  _id: string;
+  historyVoucherTopup: HistoryVoucherTopupTypes;
+  value: number;
+  status: string;
+  category: {
+    name: string;
+  };
+}
+
+export interface CategoryTopupTypes {
+  _id: string;
+  name: string;
+  value: number;
 }

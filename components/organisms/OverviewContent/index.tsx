@@ -1,29 +1,57 @@
+import { useEffect, useState, useCallback } from "react";
+import { toast } from "react-toastify";
+import {
+  CategoryTopupTypes,
+  HistoryTransactionTypes,
+} from "../../../services/data-types";
+import { getMemberOverview } from "../../../services/member";
 import Category from "./Category";
 import TableRow from "./TableRow";
 
 function OverviewContent() {
+  const [count, setCount] = useState([]);
+  const [data, setData] = useState([]);
+
+  const getMemberOverviewAPI = useCallback(async () => {
+    const response = await getMemberOverview();
+    if (response.error) {
+      toast.error(response.message);
+    } else {
+      setCount(response.data.count);
+      setData(response.data.data);
+    }
+  }, []);
+
+  useEffect(() => {
+    getMemberOverviewAPI();
+  }, []);
+
+  const img = process.env.NEXT_PUBLIC_IMAGE;
+
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
         <h2 className="text-4xl fw-bold color-palette-1 mb-30">Overview</h2>
         <div className="top-up-categories mb-30">
-          <p className="text-lg fw-medium color-palette-1 mb-14">Top Up Categories</p>
+          <p className="text-lg fw-medium color-palette-1 mb-14">
+            Top Up Categories
+          </p>
           <div className="main-content">
             <div className="row">
-              <Category icon="dekstop" nominal={18000500}>
-                Game <br /> Dekstop
-              </Category>
-              <Category icon="mobile" nominal={8455000}>
-                Game <br /> Mobile
-              </Category>
-              <Category icon="other-categories" nominal={5000000}>
-                Other <br /> Categories
-              </Category>
+              {count.map((item: CategoryTopupTypes) => {
+                return (
+                  <Category key={item._id} icon="dekstop" nominal={item.value}>
+                    Game <br /> {item.name}
+                  </Category>
+                );
+              })}
             </div>
           </div>
         </div>
         <div className="latest-transaction">
-          <p className="text-lg fw-medium color-palette-1 mb-14">Latest Transactions</p>
+          <p className="text-lg fw-medium color-palette-1 mb-14">
+            Latest Transactions
+          </p>
           <div className="main-content main-content-table overflow-auto">
             <table className="table table-borderless">
               <thead>
@@ -37,17 +65,19 @@ function OverviewContent() {
                 </tr>
               </thead>
               <tbody>
-                <TableRow
-                  title="Mobile Legends: The New Battle 2021"
-                  image="overview-1"
-                  category="Desktop"
-                  item={200}
-                  price={290000}
-                  status="Pending"
-                />
-                <TableRow title="Call of Duty:Modern" image="overview-2" category="Desktop" item={550} price={740000} status="Success" />
-                <TableRow title="Clash of Clans" image="overview-3" category="Mobile" item={100} price={120000} status="Failed" />
-                <TableRow title="The Royal Game" image="overview-4" category="Mobile" item={255} price={200000} status="Pending" />
+                {data.map((item: HistoryTransactionTypes) => {
+                  return (
+                    <TableRow
+                      key={item._id}
+                      title={item.historyVoucherTopup.gameName}
+                      image={`${img}/${item.historyVoucherTopup.thumbnail}`}
+                      category={item.category.name}
+                      item={`${item.historyVoucherTopup.coinQuantity} ${item.historyVoucherTopup.coinName}`}
+                      price={item.value}
+                      status={item.status}
+                    />
+                  );
+                })}
               </tbody>
             </table>
           </div>
