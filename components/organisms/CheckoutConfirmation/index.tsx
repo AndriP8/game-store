@@ -13,9 +13,6 @@ function CheckoutConfirmation() {
     const dataTopUpLocal = localStorage.getItem("data-top-up");
     const dataItem = JSON.parse(dataItemLocal!);
     const dataTopUp = JSON.parse(dataTopUpLocal!);
-    if (!checkbox) {
-      toast.error("Pastikan telah melakukan pembayaran");
-    }
 
     const data = {
       voucher: dataItem._id,
@@ -25,13 +22,16 @@ function CheckoutConfirmation() {
       name: dataTopUp.verifyID,
       accountUser: dataTopUp.bankAccountName,
     };
-
-    const response = await setCheckout(data);
-    if (response.error) {
-      toast.error(response.message);
+    if (!checkbox) {
+      toast.error("Pastikan telah melakukan pembayaran");
     } else {
-      toast.success("Checkout Berhasil");
-      router.push("/complete-checkout");
+      const response = await setCheckout(data);
+      if (response.error) {
+        toast.error(response.message);
+      } else {
+        toast.success("Checkout Berhasil");
+        router.push("/complete-checkout");
+      }
     }
   };
 
