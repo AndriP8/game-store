@@ -71,7 +71,7 @@ function OverviewContent() {
                       key={item._id}
                       title={item.historyVoucherTopup.gameName}
                       image={`${img}/${item.historyVoucherTopup.thumbnail}`}
-                      category={item.category.name}
+                      category={item.historyVoucherTopup.category}
                       item={`${item.historyVoucherTopup.coinQuantity} ${item.historyVoucherTopup.coinName}`}
                       price={item.value}
                       status={item.status}
