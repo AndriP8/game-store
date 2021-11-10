@@ -73,9 +73,7 @@ export interface HistoryTransactionTypes {
   historyVoucherTopup: HistoryVoucherTopupTypes;
   value: number;
   status: string;
-  category: {
-    name: string;
-  };
+  category: string;
 }
 
 export interface CategoryTopupTypes {
