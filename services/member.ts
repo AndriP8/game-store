@@ -28,3 +28,13 @@ export const getMemberTransaction = async (valueParams: string) => {
     token: true,
   });
 };
+
+export const getTransactionDetail = async (id: string, token: string) => {
+  const url = `${ROOT_API}/${API_VERSION}/players/history/${id}/detail`;
+
+  return callAPI({
+    url,
+    method: "GET",
+    serverToken: token,
+  });
+};
