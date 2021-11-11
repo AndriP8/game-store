@@ -44,6 +44,7 @@ export interface UserTypes {
   username: string;
   email: string;
   avatar: string;
+  phoneNumber: string;
 }
 
 export interface JWTPayloadTypes {
@@ -68,12 +69,23 @@ export interface HistoryVoucherTopupTypes {
   thumbnail: string;
 }
 
+export interface HistoryPaymentTypes {
+  bankName: string;
+  name: string;
+  noRekening: string;
+  type: string;
+}
+
 export interface HistoryTransactionTypes {
   _id: string;
+  accountUser: string;
   historyVoucherTopup: HistoryVoucherTopupTypes;
   value: number;
   status: string;
   category: string;
+  tax: number;
+  name: string;
+  historyPayment: HistoryPaymentTypes;
 }
 
 export interface CategoryTopupTypes {
