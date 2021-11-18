@@ -53,8 +53,9 @@
       {
         "ObjectExpression": "always",
         "ObjectPattern": "never",
-        "ImportDeclaration": "never",
-        "ExportDeclaration": { "multiline": true }
+        "ImportDeclaration": { "multiline": true },
+        "ExportDeclaration": { "multiline": true },
+        "objectsInObjects": false
       }
     ],
     "operator-linebreak": "off"
