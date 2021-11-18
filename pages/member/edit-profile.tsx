@@ -9,12 +9,18 @@ import Sidebar from "../../components/organisms/SideBar";
 import { JWTPayloadTypes, UserTypes } from "../../services/data-types";
 import { updateProfile } from "../../services/member";
 
+interface UserStateTypes {
+  _id: string;
+  name: string;
+  email: string;
+  avatar: any;
+}
+
 function EditProfile() {
-  const [user, setuser] = useState({
+  const [user, setuser] = useState<UserStateTypes>({
     _id: "",
     name: "",
     email: "",
-    phoneNumber: "",
     avatar: "",
   });
 
@@ -24,15 +30,16 @@ function EditProfile() {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    const jwtToken = atob(token);
-    const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-    const userFromPayload: UserTypes = payload.player;
-    setuser(userFromPayload);
-    setImagePreview(userFromPayload?.avatar);
+    if (token) {
+      const jwtToken = atob(token);
+      const payload: JWTPayloadTypes = jwtDecode(jwtToken);
+      const userFromPayload: UserTypes = payload.player;
+      setuser(userFromPayload);
+      setImagePreview(userFromPayload?.avatar);
+    }
   }, []);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async () => {
     const data = new FormData();
     data.append("image", user.avatar);
     data.append("name", user.name);
@@ -81,7 +88,7 @@ function EditProfile() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(e) => {
-                      const img = e.target.files[0];
+                      const img = e.target.files![0];
                       setImagePreview(URL.createObjectURL(img));
                       return setuser({ ...user, avatar: img });
                     }}
