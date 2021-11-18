@@ -25,7 +25,7 @@ function MenuItem(props: Partial<MenuItemProps>) {
     active,
   });
   return (
-    <div className={classItem} onClick={onClick}>
+    <div className={classItem} onClick={onClick} role="main">
       <div className="me-3">
         <Image src={`/icon/icon-menu-${icon}.svg`} width={25} height={25} />
       </div>

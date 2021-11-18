@@ -12,7 +12,13 @@ function StepItem(props: StepItemProps) {
   return (
     <div className="col-lg-4">
       <div className="card feature-card border-0 align-items-start">
-        <Image src={`/icon/${icon}.svg`} width={80} height={80} className="" alt="icon-step" />
+        <Image
+          src={`/icon/${icon}.svg`}
+          width={80}
+          height={80}
+          className=""
+          alt="icon-step"
+        />
         <p className="fw-semibold text-2xl mb-2 color-palette-1">{title}</p>
         <p className="text-lg color-palette-1 mb-0">
           {desc1}
