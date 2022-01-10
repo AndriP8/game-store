@@ -17,4 +17,4 @@ yarn build
 
 ## Credits
 
-Built with [Next.js](https://nextjs.org/) and [TailwindCSS](https://tailwindcss.com/)
+Built with [Next.js](https://nextjs.org/)
